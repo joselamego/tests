@@ -9,6 +9,7 @@ import (
 
 	. "github.com/kata-containers/tests"
 	. "github.com/onsi/ginkgo"
+	"github.com/onsi/ginkgo/reporters"
 	. "github.com/onsi/gomega"
 )
 
@@ -40,5 +41,6 @@ func TestIntegration(t *testing.T) {
 	}
 
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Integration Suite")
+	customReporter := reporters.NewTapReporter("tap_report.log")
+	RunSpecsWithDefaultAndCustomReporters(t, "Integration Suite", []Reporter{customReporter})
 }
